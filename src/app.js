@@ -14,9 +14,13 @@ const startApp = async () => {
   const app = await createServer();
 
   app.use(cors());
-  app.use(express.json()); // ⬅️ aqui
+  app.use(express.json());
 
-  // Aplica rotas
+  app.get('/', (req, res) => {
+  res.send('🟢 Microsserviço de Logs rodando!');
+});
+
+ 
   app.use('/api/logs', authenticateToken, logRoutes);
   app.use('/api/systems', authenticateToken, systemRoutes);
 
